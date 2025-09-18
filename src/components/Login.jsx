@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
     const [emailId, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("")
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             navigate("/")
         } catch (error) {
+            setError(error.response.data || "Something Went Wrong");
             console.log(error)
         }
     };
@@ -58,9 +60,7 @@ const Login = () => {
                             title="Only letters, numbers or dash"
                         />
                     </label>
-                    <p className="validator-hint self-start hidden">
-                        Enter Valid Email
-                    </p>
+                   
                     <label className="input validator">
                         <svg
                             className="h-[1em] opacity-50"
@@ -89,9 +89,7 @@ const Login = () => {
                             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                         />
                     </label>
-                    <p className="validator-hint hidden">
-                        password must 8 Char
-                    </p>
+                    <p className="self-start text-red-600 mx-3">{error}</p>
                     <div className="card-actions">
                         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>
