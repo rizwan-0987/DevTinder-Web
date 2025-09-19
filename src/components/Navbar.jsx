@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
+import { removeFeed } from "../utils/feedSlice";
 
 const Navbar = () => {
 
@@ -20,6 +21,7 @@ const Navbar = () => {
             }
           );
           dispatch(removeUser())
+          dispatch(removeFeed())
 navigate("/login")
       } catch (error) {
         console.log(error)
@@ -28,7 +30,9 @@ navigate("/login")
   return (
     <div className="navbar bg-base-200 shadow-sm">
       <div className="flex-1">
-        <Link to={"/"} className="btn btn-ghost text-xl">DevTinder</Link>
+        <Link to={"/"} className="btn btn-ghost text-xl">
+          DevTinder
+        </Link>
       </div>
       {user && (
         <div className="flex gap-1 items-center">
@@ -54,7 +58,10 @@ navigate("/login")
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to={"/conections"}>Connections</Link>
+              </li>
+              <li>
+                <Link to={"/requests"}>Requests</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>
