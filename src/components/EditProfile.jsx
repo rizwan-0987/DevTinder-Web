@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const EditProfile = (user) => {
-  console.log(user);
   const [firstName, setFirstName] = useState(user.user.firstName || "");
   const [lastName, setLastName] = useState(user.user.lastName || "");
   const [photoUrl, setPhotoUrl] = useState(user.user.photoUrl || "");

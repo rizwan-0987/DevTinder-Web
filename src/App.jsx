@@ -8,19 +8,36 @@ import Feed from "./components/Feed";
 import Profile from "./components/Profile";
 import Conections from "./components/Conections";
 import Requests from "./components/Requests";
+import Register from "./components/Register";
 
 function App() {
   return (
     <>
       <Provider store={appStore}>
         <BrowserRouter basename="/">
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Feed />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register/>} />
+
               <Route path="/profile" element={<Profile />} />
-              <Route path="/conections" element={<Conections />}/>
+              <Route path="/conections" element={<Conections />} />
               <Route path="/requests" element={<Requests />} />
+            </Route>
+          </Routes> */}
+
+          <Routes>
+            {/* Public routes (no Body, no auth check) */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* Protected shell (Body does auth check and renders Outlet) */}
+            <Route path="/" element={<Body />}>
+              <Route index element={<Feed />} /> {/* "/" */}
+              <Route path="profile" element={<Profile />} />
+              <Route path="conections" element={<Conections />} />
+              <Route path="requests" element={<Requests />} />
             </Route>
           </Routes>
         </BrowserRouter>

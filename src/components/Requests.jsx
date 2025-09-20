@@ -25,11 +25,15 @@ const Requests = () => {
 
    if (!requests) return;
    if (requests.length === 0) {
-     return <h1>no connection found</h1>;
+     return (
+       <h1 className="text-center my-10 font-bold text-2xl">
+         No Request found
+       </h1>
+     );
    }
    return (
-     <div className=" text-center my-10">
-       <h1 className="text-bold text-2xl"> Connection</h1>
+     <div className="text-center my-10">
+       <h1 className="font-bold text-2xl"> Requests</h1>
 
            {requests.map((request,idx) => {
                const { photoUrl, firstName, lastName, age, gender, about } = request.fromUserId;
